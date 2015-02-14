@@ -4,9 +4,9 @@
 > Plum is a data processing pipeline that helps you to write structured, reusable and well tested data processing code.
 > `plum-pdo` adds support for PDO.
 
-[![Build Status](https://travis-ci.org/plumphp/plum-finder.svg)](https://travis-ci.org/plumphp/plum-finder)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/plumphp/plum-finder/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-finder/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/plumphp/plum-finder/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-finder/?branch=master)
+[![Build Status](https://travis-ci.org/plumphp/plum-pdo.svg)](https://travis-ci.org/plumphp/plum-pdo)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
 
 Developed by [Florian Eckerstorfer](https://florian.ec) in Vienna, Europe.
 
@@ -19,7 +19,7 @@ You can install Plum using [Composer](http://getcomposer.org).
 $ composer require plumphp/plum-pdo:@stable
 ```
 
-*Tip:* Replace `@stable` with a version from the [releases page](https://github.com/plumphp/plum-finder/releases).
+*Tip:* Replace `@stable` with a version from the [releases page](https://github.com/plumphp/plum-pdo/releases).
 
 
 Usage
