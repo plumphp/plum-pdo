@@ -1,0 +1,23 @@
+{
+  "name": "plumphp/plum-pdo",
+  "description": "Integrations PDO into Plum.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Florian Eckerstorfer",
+      "email": "florian@eckerstorfer.co"
+    }
+  ],
+  "require": {
+    "plumphp/plum":   "dev-master@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.3",
+    "mockery/mockery": "~0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Plum\\PlumPdo\\": "src"
+    }
+  }
+}
