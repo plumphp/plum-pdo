@@ -18,13 +18,13 @@ use Plum\Plum\Reader\ReaderInterface;
 use Traversable;
 
 /**
- * StatementReader
+ * PdoStatementReader
  *
  * @package   Plum\PlumPdo
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright 2015 Florian Eckerstorfer
  */
-class StatementReader implements ReaderInterface
+class PdoStatementReader implements ReaderInterface
 {
     /**
      * @var PDOStatement
