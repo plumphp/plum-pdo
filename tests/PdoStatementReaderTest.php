@@ -14,6 +14,7 @@ namespace Plum\PlumPdo;
 use Mockery;
 use Mockery\Mock;
 use PHPUnit_Framework_TestCase;
+use stdClass;
 
 /**
  * PdoStatementReaderTest
@@ -55,5 +56,25 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
         $reader = new PdoStatementReader($statement);
 
         $this->assertEquals(1, $reader->count());
+    }
+
+    /**
+     * @test
+     * @covers Plum\PlumPdo\PdoStatementReader::accepts()
+     */
+    public function acceptsReturnsTrueIfInputIsPDOStatement()
+    {
+        $this->assertTrue(PdoStatementReader::accepts(Mockery::mock('\PDOStatement')));
+    }
+
+    /**
+     * @test
+     * @covers Plum\PlumPdo\PdoStatementReader::accepts()
+     */
+    public function acceptsReturnsFalseIfInputIsNotPDOStatement()
+    {
+        $this->assertFalse(PdoStatementReader::accepts('foo'));
+        $this->assertFalse(PdoStatementReader::accepts([]));
+        $this->assertFalse(PdoStatementReader::accepts(new stdClass()));
     }
 }

@@ -72,4 +72,14 @@ class PdoStatementReader implements ReaderInterface
 
         return $this->iterator->count();
     }
+
+    /**
+     * @param mixed $input
+     *
+     * @return bool
+     */
+    public static function accepts($input)
+    {
+        return $input instanceof PDOStatement;
+    }
 }
