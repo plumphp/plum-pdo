@@ -30,6 +30,10 @@ information.
 Change Log
 ----------
 
+### Version 0.1.1 (6 October 2015)
+
+- Fix Plum version
+
 ### Version 0.1 (22 April 2015)
 
 - Initial release
