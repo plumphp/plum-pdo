@@ -1,14 +1,15 @@
-<img src="https://florian.ec/img/plum/logo.png" alt="Plum">
-====
+<h1 align="center">
+    <img src="http://cdn.florian.ec/plum-logo.svg" alt="Plum" width="300">
+</h1>
 
-> Plum is a data processing pipeline that helps you to write structured, reusable and well tested data processing code.
-> `plum-pdo` adds support for PDO.
+> PlumPdo integrates [PDO](http://php.net/manual/en/book.pdo.php) into Plum. Plum is a data processing pipeline for PHP.
 
 [![Build Status](https://travis-ci.org/plumphp/plum-pdo.svg)](https://travis-ci.org/plumphp/plum-pdo)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
 
 Developed by [Florian Eckerstorfer](https://florian.ec) in Vienna, Europe.
+
 
 Installation
 ------------
@@ -25,6 +26,25 @@ Usage
 
 Please refer to the [Plum documentation](https://github.com/plumphp/plum/blob/master/docs/index.md) for more
 information.
+
+Currently PlumPdo contains `PdoStatementReader` to read data from a PDO-compatible database.
+
+### `PdoStatementReader`
+
+`Plum\PlumPdo\PdoStatementReader` returns an iterator for the result set of a `PDOStatement`. The `execute()` method
+has to be called before.
+
+```php
+use Plum\PlumPdo\PdoStatementReader;
+
+$statement = $pdo->prepare('SELECT * FROM users WHERE age >= :min_age');
+$statement->bindValue(':min_age', 18);
+$statement->execute();
+
+$reader = new PdoStatementReader($statement);
+$reader->getIterator(); // -> \ArrayIterator
+$reader->count();
+```
 
 
 Change Log
