@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "php": ">=5.5",
     "plumphp/plum": "~0.2"
   },
   "require-dev": {

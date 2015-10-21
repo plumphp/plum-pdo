@@ -11,11 +11,9 @@
 
 namespace Plum\PlumPdo;
 
-use ArrayIterator;
 use PDO;
 use PDOStatement;
 use Plum\Plum\Reader\ReaderInterface;
-use Traversable;
 
 /**
  * PdoStatementReader
@@ -37,9 +35,9 @@ class PdoStatementReader implements ReaderInterface
     private $fetchStyle;
 
     /**
-     * @var ArrayIterator
+     * @var array
      */
-    private $iterator;
+    private $rows;
 
     /**
      * @param PDOStatement $statement
@@ -52,15 +50,15 @@ class PdoStatementReader implements ReaderInterface
     }
 
     /**
-     * @return Traversable
+     * @return \Traversable
      */
     public function getIterator()
     {
-        if (!$this->iterator) {
-            $this->iterator = new ArrayIterator($this->statement->fetchAll($this->fetchStyle));
+        if ($this->rows) {
+            return $this->getArrayIterator();
         }
 
-        return $this->iterator;
+        return $this->getFetchIterator();
     }
 
     /**
@@ -68,9 +66,33 @@ class PdoStatementReader implements ReaderInterface
      */
     public function count()
     {
-        $this->getIterator();
+        if (!$this->rows) {
+            $this->rows = $this->statement->fetchAll($this->fetchStyle);
+        }
 
-        return $this->iterator->count();
+        return count($this->rows);
+    }
+
+    /**
+     * @return \Generator
+     */
+    protected function getArrayIterator()
+    {
+        foreach ($this->rows as $row) {
+            yield $row;
+        }
+    }
+
+    /**
+     * @return \Generator
+     */
+    protected function getFetchIterator()
+    {
+        $this->rows = [];
+        while ($row = $this->statement->fetch($this->fetchStyle)) {
+            $this->rows[] = $row;
+            yield $row;
+        }
     }
 
     /**
