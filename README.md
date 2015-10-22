@@ -60,7 +60,7 @@ $statement = $pdo->prepare('SELECT * FROM users WHERE age >= :min_age');
 $statement->bindValue(':min_age', 18);
 $statement->execute();
 
-$reader = new PdoStatementReader($statement, [’yield' => true]);
+$reader = new PdoStatementReader($statement, ['yield' => true]);
 $iterator = $reader->getIterator(); // -> \Generator
 foreach ($iterator as $row) {
 }
