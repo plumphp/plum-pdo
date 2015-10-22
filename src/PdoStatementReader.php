@@ -66,6 +66,8 @@ class PdoStatementReader implements ReaderInterface
 
     /**
      * @return int
+     *
+     * @throws LogicException if the `yield` option is set to `true`.
      */
     public function count()
     {
