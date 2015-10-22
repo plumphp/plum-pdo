@@ -12,10 +12,11 @@
 namespace Plum\PlumPdo;
 
 use ArrayIterator;
+use LogicException;
 use PDO;
 use PDOStatement;
 use Plum\Plum\Reader\ReaderInterface;
-use Traversable;
+use RuntimeException;
 
 /**
  * PdoStatementReader
@@ -34,7 +35,10 @@ class PdoStatementReader implements ReaderInterface
     /**
      * @var int
      */
-    private $fetchStyle;
+    private $options = [
+        'fetchStyle' => PDO::FETCH_ASSOC,
+        'yield'      => false,
+    ];
 
     /**
      * @var ArrayIterator
@@ -43,34 +47,57 @@ class PdoStatementReader implements ReaderInterface
 
     /**
      * @param PDOStatement $statement
-     * @param int          $fetchStyle
+     * @param array        $options
      */
-    public function __construct(PDOStatement $statement, $fetchStyle = PDO::FETCH_ASSOC)
+    public function __construct(PDOStatement $statement, array $options = [])
     {
-        $this->statement  = $statement;
-        $this->fetchStyle = $fetchStyle;
+        $this->statement = $statement;
+        $this->options   = array_merge($this->options, $options);
     }
 
     /**
-     * @return Traversable
+     * @return \Traversable
      */
     public function getIterator()
     {
-        if (!$this->iterator) {
-            $this->iterator = new ArrayIterator($this->statement->fetchAll($this->fetchStyle));
-        }
-
-        return $this->iterator;
+        return $this->options['yield'] ?
+            $this->getYieldIterator() :
+            $this->getArrayIterator();
     }
 
     /**
      * @return int
+     *
+     * @throws RuntimeException if the `yield` option is set to `true`.
      */
     public function count()
     {
-        $this->getIterator();
+        if ($this->options['yield']) {
+            throw new RuntimeException('Could not count \PDOStatement because "yield" option is set to true. If '.
+                                     'the reader should be countable please set the option "yield" to false.');
+        }
 
-        return $this->iterator->count();
+        return count($this->getArrayIterator());
+    }
+
+    /**
+     * @return ArrayIterator
+     */
+    protected function getArrayIterator()
+    {
+        return $this->iterator ?
+            $this->iterator :
+            $this->iterator = new ArrayIterator($this->statement->fetchAll($this->options['fetchStyle']));
+    }
+
+    /**
+     * @return \Generator
+     */
+    protected function getYieldIterator()
+    {
+        while ($row = $this->statement->fetch($this->options['fetchStyle'])) {
+            yield $row;
+        }
     }
 
     /**

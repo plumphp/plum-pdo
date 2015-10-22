@@ -46,6 +46,29 @@ $reader->getIterator(); // -> \ArrayIterator
 $reader->count();
 ```
 
+The default behavior shown in the example above is that `getIterator()` will call `fetchAll()` on the `PDOStatement`
+and returns the result in the form of an `\ArrayIterator`. However, if the result set is very large and memory becomes
+a concern it is possible to fetch the result set row by row and yield each row to the workflow. You can invoke the
+behaviour by setting the option `yield` to `true`.
+
+In the following example `getIterator()` returns a `\Generator`.
+
+```php
+use Plum\PlumPdo\PdoStatementReader;
+
+$statement = $pdo->prepare('SELECT * FROM users WHERE age >= :min_age');
+$statement->bindValue(':min_age', 18);
+$statement->execute();
+
+$reader = new PdoStatementReader($statement, [’yield' => true]);
+$iterator = $reader->getIterator(); // -> \Generator
+foreach ($iterator as $row) {
+}
+```
+
+The downside of using `yield` is that the reader is no longer countable and when invoking `count()` on such a reader
+a `\RuntimeException` will be thrown.
+
 
 Change Log
 ----------
