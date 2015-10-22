@@ -33,7 +33,7 @@ class PdoStatementReader implements ReaderInterface
     private $statement;
 
     /**
-     * @var int
+     * @var array
      */
     private $options = [
         'fetchStyle' => PDO::FETCH_ASSOC,
@@ -56,7 +56,7 @@ class PdoStatementReader implements ReaderInterface
     }
 
     /**
-     * @return \Traversable
+     * @return \Iterator
      */
     public function getIterator()
     {
@@ -91,7 +91,7 @@ class PdoStatementReader implements ReaderInterface
     }
 
     /**
-     * @return \Generator
+     * @return \Iterator
      */
     protected function getYieldIterator()
     {
