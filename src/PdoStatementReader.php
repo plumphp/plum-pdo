@@ -16,6 +16,7 @@ use LogicException;
 use PDO;
 use PDOStatement;
 use Plum\Plum\Reader\ReaderInterface;
+use RuntimeException;
 
 /**
  * PdoStatementReader
@@ -67,12 +68,12 @@ class PdoStatementReader implements ReaderInterface
     /**
      * @return int
      *
-     * @throws LogicException if the `yield` option is set to `true`.
+     * @throws RuntimeException if the `yield` option is set to `true`.
      */
     public function count()
     {
         if ($this->options['yield']) {
-            throw new LogicException('Could not count \PDOStatement because "yield" option is set to true. If '.
+            throw new RuntimeException('Could not count \PDOStatement because "yield" option is set to true. If '.
                                      'the reader should be countable please set the option "yield" to false.');
         }
 

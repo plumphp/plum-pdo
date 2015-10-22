@@ -174,9 +174,9 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      * @covers Plum\PlumPdo\PdoStatementReader::count()
-     * @expectedException \LogicException
+     * @expectedException \RuntimeException
      */
-    public function countThrowsLogicExceptionIfYieldOptionIsSetToTrue()
+    public function countThrowsRuntimeExceptionIfYieldOptionIsSetToTrue()
     {
         /** @var \PDOStatement $statement */
         $statement = Mockery::mock('\PDOStatement');

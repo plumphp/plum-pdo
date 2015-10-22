@@ -67,7 +67,7 @@ foreach ($iterator as $row) {
 ```
 
 The downside of using `yield` is that the reader is no longer countable and when invoking `count()` on such a reader
-a `\LogicException` will be thrown.
+a `\RuntimeException` will be thrown.
 
 
 Change Log
