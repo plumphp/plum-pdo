@@ -12,16 +12,14 @@
 namespace Plum\PlumPdo;
 
 use ArrayIterator;
-use LogicException;
 use PDO;
 use PDOStatement;
 use Plum\Plum\Reader\ReaderInterface;
 use RuntimeException;
 
 /**
- * PdoStatementReader
+ * PdoStatementReader.
  *
- * @package   Plum\PlumPdo
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright 2015 Florian Eckerstorfer
  */

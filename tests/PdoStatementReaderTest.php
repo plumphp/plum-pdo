@@ -18,9 +18,8 @@ use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
- * PdoStatementReaderTest
+ * PdoStatementReaderTest.
  *
- * @package   Plum\PlumPdo
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
@@ -49,9 +48,10 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
         $i        = 0;
         foreach ($reader->getIterator() as $item) {
             $this->assertEquals($expected[$i], $item);
-            $i++;
+            ++$i;
         }
     }
+
     /**
      * @test
      * @covers Plum\PlumPdo\PdoStatementReader::__construct()
@@ -74,7 +74,7 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
         $i        = 0;
         foreach ($reader->getIterator() as $item) {
             $this->assertEquals($expected[$i], $item);
-            $i++;
+            ++$i;
         }
     }
 
@@ -99,7 +99,7 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
         $i        = 0;
         foreach ($reader->getIterator() as $item) {
             $this->assertEquals($expected[$i], $item);
-            $i++;
+            ++$i;
         }
     }
 
@@ -124,7 +124,7 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
         $i        = 0;
         foreach ($reader->getIterator() as $item) {
             $this->assertEquals($expected[$i], $item);
-            $i++;
+            ++$i;
         }
     }
 
@@ -146,13 +146,13 @@ class PdoStatementReaderTest extends PHPUnit_Framework_TestCase
 
         $expected = [
             ['id' => 1],
-            ['id' => 2]
+            ['id' => 2],
         ];
         $i        = 0;
         $reader->count();
         foreach ($reader->getIterator() as $item) {
             $this->assertEquals($expected[$i], $item);
-            $i++;
+            ++$i;
         }
     }
 
