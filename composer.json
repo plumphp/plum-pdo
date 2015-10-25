@@ -13,7 +13,7 @@
     "plumphp/plum": "~0.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.3",
+    "phpunit/phpunit": "~4.8",
     "mockery/mockery": "~0.9"
   },
   "autoload":    {

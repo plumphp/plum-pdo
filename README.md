@@ -5,8 +5,10 @@
 > PlumPdo integrates [PDO](http://php.net/manual/en/book.pdo.php) into Plum. Plum is a data processing pipeline for PHP.
 
 [![Build Status](https://travis-ci.org/plumphp/plum-pdo.svg)](https://travis-ci.org/plumphp/plum-pdo)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/7r6u1evnnoo9q5cv?svg=true)](https://ci.appveyor.com/project/florianeckerstorfer/plum-pdo)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/plumphp/plum-pdo/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/plumphp/plum-pdo/?branch=master)
+[![StyleCI](https://styleci.io/repos/30804369/shield)](https://styleci.io/repos/30804369)
 
 Developed by [Florian Eckerstorfer](https://florian.ec) in Vienna, Europe.
 
